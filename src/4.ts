@@ -27,9 +27,11 @@ class Person {
 // Дім (House): Створіть абстрактний клас House. Цей клас має дві властивості: door, яка може бути відкрита (true), або закрита (false), і key, яка зберігає об'єкт класу Key. У цьому класі також повинен бути метод comeIn, який додає об'єкт класу Person у масив tenants, якщо door відкрита. Ваш абстрактний клас House також повинен мати абстрактний метод OpenDoor, який приймає об'єкт класу Key.
 
 abstract class House {
-  door: boolean;
-  key: Key;
-  tenants: Person[] = [];
+  door: boolean = false;
+  private tenants: Person[] = [];
+  protected key: Key;
+
+  constructor(key: Key) {}
 
   comeIn(tenant: Person) {
     if (this.door) {
@@ -56,7 +58,7 @@ class MyHouse extends House {
 
 const key = new Key();
 
-const house = new MyHouse();
+const house = new MyHouse(key);
 const person = new Person(key);
 
 house.openDoor(person.getKey());
